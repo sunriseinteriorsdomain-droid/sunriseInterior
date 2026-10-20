@@ -784,8 +784,46 @@ main .font-body-lg.max-w-3xl {
   transform: translateY(0);
 }
 
-.brand-introduction .grid {
-  gap: clamp(40px, 5vw, 64px);
+.brand-introduction > .max-w-container-max > .grid {
+  gap: clamp(32px, 5vw, 64px);
+}
+
+.brand-introduction .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1rem !important;
+}
+
+@media (min-width: 640px) {
+  .brand-introduction .stats-grid {
+    gap: 2rem 1.5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .brand-introduction .stats-grid {
+    gap: 2.5rem 2rem !important;
+  }
+}
+
+.brand-introduction .stat-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.brand-introduction .stat-value {
+  font-size: clamp(1.6rem, 6.2vw, 2.75rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.02em;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 380px) {
+  .brand-introduction .stat-value {
+    font-size: 1.45rem !important;
+  }
 }
 
 .brand-introduction .font-body-lg {

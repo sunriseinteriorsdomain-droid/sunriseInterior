@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# 1. 301 Permanent Redirects for Old Indexed Pages (Preserve Google Ranking & Fix 404s)
+RewriteRule ^contact-us(\.html)?$ /book_a_quote.html [R=301,L]
+RewriteRule ^contact(\.html)?$ /book_a_quote.html [R=301,L]
+RewriteRule ^about-us(\.html)?$ /about.html [R=301,L]
+RewriteRule ^home-interiors(\.html)?$ /home-interiors-bangalore.html [R=301,L]
+RewriteRule ^modular-kitchen(\.html)?$ /modular-kitchen-bangalore.html [R=301,L]
+RewriteRule ^modular-wardrobe(\.html)?$ /modular-wardrobe-bangalore.html [R=301,L]
+RewriteRule ^living-and-dining(\.html)?$ /living-and-dining-bangalore.html [R=301,L]
+RewriteRule ^projects(\.html)?$ /projects_.html [R=301,L]
+RewriteRule ^book-a-quote(\.html)?$ /book_a_quote.html [R=301,L]
+
+# 2. Resolve clean URLs without .html extension (e.g. /about -> /about.html)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+</IfModule>
+
+# 3. Fallback 404 handler to Home page (Never show ugly 404 error page)
+ErrorDocument 404 /index.html
