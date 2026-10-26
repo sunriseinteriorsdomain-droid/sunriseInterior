@@ -23,18 +23,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function bindDropdown(wrapper) {
         const trigger = wrapper.querySelector('.gallery-menu-trigger');
+        const submenuGroups = Array.from(wrapper.querySelectorAll('.services-menu-group'));
+
+        function setSubmenuOpen(group, isOpen) {
+            group.classList.toggle('is-submenu-open', isOpen);
+            group.querySelector('.services-submenu-toggle').setAttribute('aria-expanded', String(isOpen));
+        }
+
+        function closeSubmenus(exceptGroup) {
+            submenuGroups.forEach((group) => {
+                if (group !== exceptGroup) setSubmenuOpen(group, false);
+            });
+        }
 
         function setOpen(isOpen, dismissed = false) {
             wrapper.classList.toggle('is-open', isOpen);
             wrapper.classList.toggle('is-collapsed', dismissed);
             trigger.setAttribute('aria-expanded', String(isOpen));
+            if (!isOpen) closeSubmenus();
         }
 
         trigger.addEventListener('click', () => {
-            const isFinePointerHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+            const isHovering = window.matchMedia('(hover: hover) and (pointer: fine)').matches
                 && wrapper.matches(':hover');
-            const shouldOpen = isFinePointerHover || !wrapper.classList.contains('is-open');
+            const shouldOpen = isHovering || !wrapper.classList.contains('is-open');
             setOpen(shouldOpen, !shouldOpen);
+        });
+        trigger.addEventListener('keydown', (event) => {
+            if (event.key !== 'ArrowDown') return;
+            const firstLink = wrapper.querySelector('.gallery-menu-panel a');
+            if (!firstLink) return;
+            event.preventDefault();
+            setOpen(true);
+            firstLink.focus();
         });
 
         trigger.addEventListener('focus', () => {
@@ -58,8 +79,71 @@ document.addEventListener('DOMContentLoaded', () => {
         wrapper.addEventListener('keydown', (event) => {
             if (event.key !== 'Escape' || !wrapper.classList.contains('is-open')) return;
             event.preventDefault();
+            const openSubmenu = submenuGroups.find((group) => group.classList.contains('is-submenu-open'));
+            if (openSubmenu) {
+                setSubmenuOpen(openSubmenu, false);
+                openSubmenu.querySelector('.services-submenu-toggle').focus();
+                return;
+            }
             setOpen(false, true);
             trigger.focus();
+        });
+
+        submenuGroups.forEach((group) => {
+            const submenuToggle = group.querySelector('.services-submenu-toggle');
+            const submenuPanel = group.querySelector('.services-submenu-panel');
+
+            submenuToggle.addEventListener('click', () => {
+                const isHovering = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+                    && group.matches(':hover');
+                const shouldOpen = isHovering || !group.classList.contains('is-submenu-open');
+                closeSubmenus(group);
+                setSubmenuOpen(group, shouldOpen);
+            });
+            submenuToggle.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                    event.preventDefault();
+                    closeSubmenus(group);
+                    setSubmenuOpen(group, true);
+                    submenuPanel.querySelector('a').focus();
+                }
+            });
+            group.addEventListener('pointerenter', (event) => {
+                if (event.pointerType !== 'mouse') return;
+                closeSubmenus(group);
+                setSubmenuOpen(group, true);
+                const panelBounds = submenuPanel.getBoundingClientRect();
+                group.classList.toggle('is-submenu-left', panelBounds.right > window.innerWidth);
+            });
+            group.addEventListener('pointerleave', () => {
+                if (!group.contains(document.activeElement)) setSubmenuOpen(group, false);
+            });
+            group.addEventListener('focusout', (event) => {
+                if (!group.contains(event.relatedTarget) && !group.matches(':hover')) {
+                    setSubmenuOpen(group, false);
+                }
+            });
+            group.addEventListener('focusin', (event) => {
+                if (!submenuPanel.contains(event.target)) return;
+                closeSubmenus(group);
+                setSubmenuOpen(group, true);
+            });
+            group.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && group.classList.contains('is-submenu-open')) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    setSubmenuOpen(group, false);
+                    submenuToggle.focus();
+                } else if (event.key === 'ArrowLeft' && submenuPanel.contains(event.target)) {
+                    event.preventDefault();
+                    setSubmenuOpen(group, false);
+                    submenuToggle.focus();
+                }
+            });
+        });
+
+        document.addEventListener('pointerdown', (event) => {
+            if (!wrapper.contains(event.target)) setOpen(false);
         });
     }
 
@@ -80,13 +164,22 @@ document.addEventListener('DOMContentLoaded', () => {
         wrapper.className = 'gallery-menu services-menu';
         const servicePages = [
             'modular-kitchen-bangalore',
+            'u-shaped-modular-kitchen-bangalore',
+            'parallel-modular-kitchen-bangalore',
+            'l-shaped-modular-kitchen-bangalore',
+            'straight-and-island-kitchens-bangalore',
             'modular-wardrobe-bangalore',
+            'bedroom-interiors-bangalore',
             'living-and-dining-bangalore',
             'home-interiors-bangalore',
             'services'
         ];
         const isServicePage = servicePages.some((p) => window.location.pathname.includes(p));
-        wrapper.innerHTML = `<button type="button" class="gallery-menu-trigger font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors${isServicePage ? ' gallery-active' : ''}" aria-expanded="false" aria-haspopup="true" aria-controls="services-menu-panel">Services <span class="material-symbols-outlined">expand_more</span></button><div id="services-menu-panel" class="gallery-menu-panel services-menu-panel"><div class="services-menu-heading"><span></span>Services<span></span></div><a href="modular-kitchen-bangalore.html">Modular Kitchen</a><a href="modular-wardrobe-bangalore.html">Modular Wardrobe</a><a href="living-and-dining-bangalore.html">Living And Dining</a><a href="home-interiors-bangalore.html">Home Interiors</a></div>`;
+        wrapper.innerHTML = `<button type="button" class="gallery-menu-trigger font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors${isServicePage ? ' gallery-active' : ''}" aria-expanded="false" aria-haspopup="true" aria-controls="services-menu-panel">Services <span class="material-symbols-outlined">expand_more</span></button><div id="services-menu-panel" class="gallery-menu-panel services-menu-panel"><div class="services-menu-heading"><span></span>Services<span></span></div><div class="services-menu-group"><div class="services-menu-parent"><a href="modular-kitchen-bangalore.html">Modular Kitchen</a><button type="button" class="services-submenu-toggle" aria-label="Show Modular Kitchen layouts" aria-haspopup="true" aria-expanded="false" aria-controls="modular-kitchen-submenu"><span class="material-symbols-outlined">chevron_right</span></button></div><div id="modular-kitchen-submenu" class="services-submenu-panel"><a href="u-shaped-modular-kitchen-bangalore.html">U-Shaped Kitchens</a><a href="l-shaped-modular-kitchen-bangalore.html">L-Shaped Kitchens</a><a href="parallel-modular-kitchen-bangalore.html">Parallel Kitchens</a><a href="straight-and-island-kitchens-bangalore.html">Straight &amp; Island Kitchens</a></div></div><a href="modular-wardrobe-bangalore.html">Modular Wardrobe</a><a href="bedroom-interiors-bangalore.html">Bedroom Interiors</a><a href="living-and-dining-bangalore.html">Living And Dining</a><a href="home-interiors-bangalore.html">Home Interiors</a></div>`;
+        wrapper.querySelectorAll('.services-menu-panel a').forEach((link) => {
+            if (!window.location.pathname.endsWith(link.getAttribute('href'))) return;
+            link.setAttribute('aria-current', 'page');
+        });
         bindDropdown(wrapper);
         return wrapper;
     }
@@ -106,7 +199,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileMenu && !mobileMenu.querySelector('.mobile-services-links')) {
         const serviceLinks = document.createElement('div');
         serviceLinks.className = 'mobile-services-links flex flex-col items-center gap-4';
-        serviceLinks.innerHTML = '<span class="font-label-caps text-label-caps uppercase text-dream-amber">Services</span><a href="modular-kitchen-bangalore.html" class="font-button text-xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Modular Kitchen</a><a href="modular-wardrobe-bangalore.html" class="font-button text-xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Modular Wardrobe</a><a href="living-and-dining-bangalore.html" class="font-button text-xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Living And Dining</a><a href="home-interiors-bangalore.html" class="font-button text-xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Home Interiors</a><a href="services.html" class="font-button text-lg uppercase text-warm-ivory/70 hover:text-dream-amber transition-colors">All Services</a>';
+        serviceLinks.innerHTML = '<span class="font-label-caps text-label-caps uppercase text-dream-amber">Services</span><div class="mobile-services-group"><div class="mobile-services-parent"><a href="modular-kitchen-bangalore.html" class="font-button text-xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Modular Kitchen</a><button type="button" class="mobile-services-toggle" aria-label="Show Modular Kitchen layouts" aria-expanded="false" aria-controls="mobile-kitchen-submenu"><span class="material-symbols-outlined">expand_more</span></button></div><div id="mobile-kitchen-submenu" class="mobile-services-submenu"><a href="u-shaped-modular-kitchen-bangalore.html" class="font-button text-lg uppercase text-warm-ivory/70 hover:text-dream-amber transition-colors">U-Shaped Kitchens</a><a href="l-shaped-modular-kitchen-bangalore.html" class="font-button text-lg uppercase text-warm-ivory/70 hover:text-dream-amber transition-colors">L-Shaped Kitchens</a><a href="parallel-modular-kitchen-bangalore.html" class="font-button text-lg uppercase text-warm-ivory/70 hover:text-dream-amber transition-colors">Parallel Kitchens</a><a href="straight-and-island-kitchens-bangalore.html" class="font-button text-lg uppercase text-warm-ivory/70 hover:text-dream-amber transition-colors">Straight &amp; Island Kitchens</a></div></div><a href="modular-wardrobe-bangalore.html" class="font-button text-xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Modular Wardrobe</a><a href="bedroom-interiors-bangalore.html" class="font-button text-xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Bedroom Interiors</a><a href="living-and-dining-bangalore.html" class="font-button text-xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Living And Dining</a><a href="home-interiors-bangalore.html" class="font-button text-xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Home Interiors</a><a href="services.html" class="font-button text-lg uppercase text-warm-ivory/70 hover:text-dream-amber transition-colors">All Services</a>';
+        const kitchenToggle = serviceLinks.querySelector('.mobile-services-toggle');
+        const kitchenGroup = serviceLinks.querySelector('.mobile-services-group');
+        serviceLinks.querySelectorAll('a').forEach((link) => {
+            if (!window.location.pathname.endsWith(link.getAttribute('href'))) return;
+            link.setAttribute('aria-current', 'page');
+        });
+        kitchenToggle.addEventListener('click', () => {
+            const isOpen = kitchenGroup.classList.toggle('is-submenu-open');
+            kitchenToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+        kitchenToggle.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown' && kitchenGroup.classList.contains('is-submenu-open')) {
+                event.preventDefault();
+                kitchenGroup.querySelector('.mobile-services-submenu a').focus();
+            }
+        });
+        kitchenGroup.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && kitchenGroup.classList.contains('is-submenu-open')) {
+                event.preventDefault();
+                event.stopPropagation();
+                kitchenGroup.classList.remove('is-submenu-open');
+                kitchenToggle.setAttribute('aria-expanded', 'false');
+                kitchenToggle.focus();
+            }
+        });
         const aboutLink = mobileMenu.querySelector('a[href="about.html"]');
         const servicesMobile = mobileMenu.querySelector('a[href="services.html"]');
         if (servicesMobile) servicesMobile.remove();
@@ -163,6 +281,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuClose = document.getElementById('mobile-menu-close');
 
     if (mobileMenuBtn && mobileMenuClose && mobileMenu) {
+        function closeMobileMenu() {
+            mobileMenu.classList.add('translate-x-full');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 500);
+            mobileMenu.querySelectorAll('.mobile-services-group.is-submenu-open').forEach((group) => {
+                group.classList.remove('is-submenu-open');
+                group.querySelector('.mobile-services-toggle').setAttribute('aria-expanded', 'false');
+            });
+            document.body.style.overflow = '';
+        }
+
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('hidden');
             setTimeout(() => {
@@ -171,12 +301,23 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = 'hidden';
         });
 
-        mobileMenuClose.addEventListener('click', () => {
-            mobileMenu.classList.add('translate-x-full');
-            setTimeout(() => {
-                mobileMenu.classList.add('hidden');
-            }, 500);
-            document.body.style.overflow = '';
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenu.addEventListener('click', (event) => {
+            if (event.target === mobileMenu) {
+                closeMobileMenu();
+                return;
+            }
+            const openGroup = mobileMenu.querySelector('.mobile-services-group.is-submenu-open');
+            if (openGroup && !openGroup.contains(event.target)) {
+                openGroup.classList.remove('is-submenu-open');
+                openGroup.querySelector('.mobile-services-toggle').setAttribute('aria-expanded', 'false');
+            }
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                closeMobileMenu();
+                mobileMenuBtn.focus();
+            }
         });
     }
 });
@@ -425,7 +566,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Deferred background videos — load after first paint when visible
     const deferredVideos = document.querySelectorAll('video.deferred-bg-video[data-src]');
-    if (deferredVideos.length) {
+    const connection = navigator.connection;
+    const skipBackgroundVideo = (connection && connection.saveData)
+        || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (deferredVideos.length && !skipBackgroundVideo) {
         const loadVideo = (video) => {
             if (video.dataset.loaded === '1') return;
             const src = video.dataset.src;
