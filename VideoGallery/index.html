@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="icon" href="../shared/images/favicon.webp" type="image/webp">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Gallery | Sunrise Interiors</title>
+    <meta name="description" content="Watch Sunrise Interiors project videos and design stories from Bangalore." />
+    <link rel="canonical" href="https://sunriseinteriors.in/video-gallery.html" />
+    <meta property="og:title" content="Video Gallery | Sunrise Interiors" />
+    <meta property="og:description" content="Watch Sunrise Interiors project videos and design stories from Bangalore." />
+    <meta property="og:url" content="https://sunriseinteriors.in/video-gallery.html" />
+    <meta property="og:type" content="website" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+    <link rel="stylesheet" href="../shared/css/global.css?v=20261026-menu2" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">tailwind.config = { theme: { extend: { "colors": { "warm-ivory": "#FCFAF8", "dream-amber": "#FF7D00", "secondary": "#984800", "secondary-container": "#fd7c00", "architectural-line": "rgba(39, 37, 47, 0.1)", "primary": "#12101a", "deep-charcoal": "#27252F", "tertiary": "#151106", "on-primary": "#ffffff", "on-surface-variant": "#48464b", "surface": "#fbf9f7", "background": "#fbf9f7", "on-surface": "#1b1c1b" }, "spacing": { "margin-mobile": "16px", "container-max": "1440px", "stack-lg": "80px", "stack-sm": "24px", "gutter": "24px", "stack-md": "48px", "margin-desktop": "64px" }, "fontFamily": { "button": ["Hanken Grotesk"], "display-lg": ["Libre Caslon Text"], "body-md": ["Hanken Grotesk"], "label-caps": ["Hanken Grotesk"], "body-lg": ["Hanken Grotesk"] }, "fontSize": { "button": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }], "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } }</script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Libre+Caslon+Text:wght@400&display=swap" rel="stylesheet" />
+    <style>
+        body { background: #fbf9f7; color: #12101a; font-family: 'Hanken Grotesk', sans-serif; }
+        .video-page { max-width: 1440px; margin: 0 auto; }
+        .video-page h1 { font-family: 'Libre Caslon Text', serif; font-weight: 400; letter-spacing: -0.03em; }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+        .video-card {
+            margin: 0;
+            border: 0;
+            padding: 0;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+        }
+        .video-thumb {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #27252f;
+        }
+        .video-thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            pointer-events: none;
+            background: #080808;
+        }
+        .video-thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(18, 16, 26, 0.55) 0%, rgba(18, 16, 26, 0.12) 45%, transparent 70%);
+            pointer-events: none;
+        }
+        .play-btn {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .play-btn span {
+            width: 64px;
+            height: 64px;
+            border-radius: 9999px;
+            background: rgba(255, 125, 0, 0.95);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 28px rgba(18, 16, 26, 0.28);
+            transition: transform 220ms ease, background 220ms ease;
+        }
+        .video-card:hover .play-btn span {
+            transform: scale(1.06);
+            background: #ef7c00;
+        }
+        .video-card h3 {
+            font-family: 'Libre Caslon Text', serif;
+            font-size: 1.25rem;
+            line-height: 1.3;
+            margin: 16px 0 6px;
+            color: #12101a;
+        }
+        .video-card p {
+            margin: 0;
+            color: #48464b;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            max-width: 34ch;
+        }
+
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .video-modal.is-open { display: flex; }
+        .video-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(18, 16, 26, 0.82);
+            backdrop-filter: blur(8px);
+        }
+        .video-modal-dialog {
+            position: relative;
+            z-index: 1;
+            width: min(960px, 100%);
+            background: #12101a;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+        }
+        .video-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .video-modal-header h2 {
+            margin: 0;
+            color: #fcfaf8;
+            font-family: 'Libre Caslon Text', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+        }
+        .video-modal-close {
+            border: 0;
+            background: transparent;
+            color: rgba(252, 250, 248, 0.8);
+            cursor: pointer;
+            padding: 4px;
+            display: inline-flex;
+        }
+        .video-modal-close:hover { color: #ff7d00; }
+        .video-modal-body {
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+        .video-modal-body video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            background: #000;
+        }
+
+        @media (max-width: 1023px) {
+            .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+        }
+        @media (max-width: 767px) {
+            .video-grid { grid-template-columns: 1fr; gap: 28px; }
+            .play-btn span { width: 56px; height: 56px; }
+        }
+    </style>
+</head>
+<body class="gallery-page-shell">
+    <header class="fixed top-0 w-full z-50 transition-all duration-500 border-b border-white/10" id="global-header">
+        <div class="h-24 max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between">
+            <a href="../Home/index.html" class="flex items-center"><img class="site-logo" src="../shared/images/logo1.webp" alt="Sunrise Interiors" /></a>
+            <nav class="hidden lg:flex items-center gap-10"><a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors" data-path="home" href="../Home/index.html">Home</a><a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors" data-path="about" href="../About/index.html">About</a><a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors" data-path="projects" href="../Projects/index.html">Projects</a><a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors" data-path="services" href="../Services/index.html">Services</a><a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors" data-path="packages" href="../Packages/index.html">Packages</a><a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors" data-path="process" href="../Process/index.html">Process</a><a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors" data-path="contact" href="../Contact/index.html">Contact</a></nav>
+            <button type="button" class="lg:hidden text-warm-ivory" id="mobile-menu-btn" aria-label="Open menu"><span class="material-symbols-outlined text-[28px]">menu</span></button>
+        </div>
+    </header>
+    <div id="mobile-menu" class="fixed inset-0 bg-[#12101a]/95 backdrop-blur-xl z-[60] flex flex-col items-center justify-start gap-6 overflow-y-auto pt-24 pb-12 transition-transform duration-500 translate-x-full hidden">
+        <button type="button" class="absolute top-8 right-5 text-warm-ivory" id="mobile-menu-close" aria-label="Close menu"><span class="material-symbols-outlined text-[24px]">close</span></button>
+        <a href="../Home/index.html" class="font-button text-2xl uppercase text-warm-ivory">Home</a><a href="../About/index.html" class="font-button text-2xl uppercase text-warm-ivory">About</a><a href="../Projects/index.html" class="font-button text-2xl uppercase text-warm-ivory">Projects</a><a href="../Services/index.html" class="font-button text-2xl uppercase text-warm-ivory">Services</a><a href="../Packages/index.html" class="font-button text-2xl uppercase text-warm-ivory">Packages</a><a href="../Process/index.html" class="font-button text-2xl uppercase text-warm-ivory">Process</a><a href="../Contact/index.html" class="font-button text-2xl uppercase text-warm-ivory">Contact</a>
+        <a href="../Gallery/index.html" class="font-button text-xl uppercase text-warm-ivory">Image Gallery</a><a href="../VideoGallery/index.html" class="font-button text-xl uppercase text-dream-amber">Video Gallery</a>
+    </div>
+
+    <main class="video-page gallery-page-header">
+        <span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Sunrise Interiors</span>
+        <h1 class="text-5xl md:text-7xl mt-5">Video Gallery</h1>
+        <p class="font-body-lg text-on-surface-variant mt-4 max-w-xl mx-auto leading-relaxed">Client stories and project walkthroughs from homes designed and executed by Sunrise Interiors.</p>
+
+        <div class="video-grid" id="video-gallery-grid">
+            <button type="button" class="video-card" data-src="../shared/images/video%20review/review-01-kitchen-dreams.mp4" data-title="Because she deserves the best">
+                <div class="video-thumb">
+                    <video class="thumb-vid" poster="../shared/images/gallery-kitchen-modern.webp" data-thumb-src="../shared/images/video%20review/review-01-kitchen-dreams.mp4" muted playsinline preload="none" tabindex="-1"></video>
+                    <div class="play-btn"><span class="material-symbols-outlined text-[32px]">play_arrow</span></div>
+                </div>
+                <h3>Because she deserves the best</h3>
+                <p>A kitchen that is beautiful, organized, and made for everyday life.</p>
+            </button>
+
+            <button type="button" class="video-card" data-src="../shared/images/video%20review/review-02-living-partition.mp4" data-title="Designed for style. Built for function.">
+                <div class="video-thumb">
+                    <video class="thumb-vid" poster="../shared/images/screen.webp" data-thumb-src="../shared/images/video%20review/review-02-living-partition.mp4" muted playsinline preload="none" tabindex="-1"></video>
+                    <div class="play-btn"><span class="material-symbols-outlined text-[32px]">play_arrow</span></div>
+                </div>
+                <h3>Designed for style. Built for function.</h3>
+                <p>A modern partition that adds character to the living space.</p>
+            </button>
+
+            <button type="button" class="video-card" data-src="../shared/images/video%20review/review-03-happy-clients.mp4" data-title="Happy clients, happy us">
+                <div class="video-thumb">
+                    <video class="thumb-vid" poster="../shared/images/screen06.webp" data-thumb-src="../shared/images/video%20review/review-03-happy-clients.mp4" muted playsinline preload="none" tabindex="-1"></video>
+                    <div class="play-btn"><span class="material-symbols-outlined text-[32px]">play_arrow</span></div>
+                </div>
+                <h3>Happy clients, happy us</h3>
+                <p>Another beautiful home designed and executed from planning to finish.</p>
+            </button>
+
+            <button type="button" class="video-card" data-src="../shared/images/video%20review/review-04-client-happiness.mp4" data-title="Hearing our client's happiness">
+                <div class="video-thumb">
+                    <video class="thumb-vid" poster="../shared/images/gallery-bedroom-elegant.webp" data-thumb-src="../shared/images/video%20review/review-04-client-happiness.mp4" muted playsinline preload="none" tabindex="-1"></video>
+                    <div class="play-btn"><span class="material-symbols-outlined text-[32px]">play_arrow</span></div>
+                </div>
+                <h3>Hearing our client's happiness</h3>
+                <p>Turning dreams into reality is what makes every effort worth it.</p>
+            </button>
+
+            <button type="button" class="video-card" data-src="../shared/images/video%20review/review-05-little-paradise.mp4" data-title="Her little paradise">
+                <div class="video-thumb">
+                    <video class="thumb-vid" poster="../shared/images/gallery-bedroom-elegant.webp" data-thumb-src="../shared/images/video%20review/review-05-little-paradise.mp4" muted playsinline preload="none" tabindex="-1"></video>
+                    <div class="play-btn"><span class="material-symbols-outlined text-[32px]">play_arrow</span></div>
+                </div>
+                <h3>Her little paradise</h3>
+                <p>A room designed to grow with her dreams, style, and personality.</p>
+            </button>
+
+            <button type="button" class="video-card" data-src="../shared/images/video%20review/review-06-calm-room.mp4" data-title="No clutter. No chaos. Just calm.">
+                <div class="video-thumb">
+                    <video class="thumb-vid" poster="../shared/images/screen0.3.webp" data-thumb-src="../shared/images/video%20review/review-06-calm-room.mp4" muted playsinline preload="none" tabindex="-1"></video>
+                    <div class="play-btn"><span class="material-symbols-outlined text-[32px]">play_arrow</span></div>
+                </div>
+                <h3>No clutter. No chaos. Just calm.</h3>
+                <p>Because the way your room looks is the way you'll feel every day.</p>
+            </button>
+
+            <button type="button" class="video-card" data-src="../shared/images/video%20review/review-07-quality-speaks.mp4" data-title="Quality speaks">
+                <div class="video-thumb">
+                    <video class="thumb-vid" poster="../shared/images/gallery-kitchen-sage.webp" data-thumb-src="../shared/images/video%20review/review-07-quality-speaks.mp4" muted playsinline preload="none" tabindex="-1"></video>
+                    <div class="play-btn"><span class="material-symbols-outlined text-[32px]">play_arrow</span></div>
+                </div>
+                <h3>Quality speaks</h3>
+                <p>Happy clients speak even louder.</p>
+            </button>
+
+            <button type="button" class="video-card" data-src="../shared/images/video%20review/review-08-home-interiors.mp4" data-title="Thoughtful home interiors">
+                <div class="video-thumb">
+                    <video class="thumb-vid" poster="../shared/images/screen06.webp" data-thumb-src="../shared/images/video%20review/review-08-home-interiors.mp4" muted playsinline preload="none" tabindex="-1"></video>
+                    <div class="play-btn"><span class="material-symbols-outlined text-[32px]">play_arrow</span></div>
+                </div>
+                <h3>Thoughtful home interiors</h3>
+                <p>Bedroom, living, and décor ideas brought together for a complete new home.</p>
+            </button>
+
+            <button type="button" class="video-card" data-src="../shared/images/video%20review/review-09-creating-space.mp4" data-title="Creating space with patience &amp; passion">
+                <div class="video-thumb">
+                    <video class="thumb-vid" poster="../shared/images/screen0.1.webp" data-thumb-src="../shared/images/video%20review/review-09-creating-space.mp4" muted playsinline preload="none" tabindex="-1"></video>
+                    <div class="play-btn"><span class="material-symbols-outlined text-[32px]">play_arrow</span></div>
+                </div>
+                <h3>Creating space with patience &amp; passion</h3>
+                <p>Every board, every corner, every detail thoughtfully crafted.</p>
+            </button>
+        </div>
+    </main>
+
+    <div id="video-modal" class="video-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
+        <div class="video-modal-backdrop" data-close-video></div>
+        <div class="video-modal-dialog">
+            <div class="video-modal-header">
+                <h2 id="video-modal-title">Project video</h2>
+                <button type="button" class="video-modal-close" data-close-video aria-label="Close video">
+                    <span class="material-symbols-outlined text-[28px]">close</span>
+                </button>
+            </div>
+            <div class="video-modal-body">
+                <video id="video-modal-player" controls playsinline></video>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-tertiary text-warm-ivory border-t border-white/10 pt-10 pb-6">
+        <div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+                <div class="lg:col-span-4 flex flex-col items-start">
+                    <span
+                        class="font-display-lg text-3xl text-warm-ivory tracking-wider group-hover:text-dream-amber transition-colors">Sunrise
+                        Interiors</span>
+                    <p class="font-body-md text-[14px] text-warm-ivory/70 max-w-sm mb-6 leading-relaxed">The best
+                        interior designers in Bangalore have come together to create Sunrise Interiors: thoughtful home
+                        interiors shaped by skilled craftsmanship, honest guidance, and a clear focus on how people
+                        live.</p>
+                </div>
+                <div class="lg:col-span-2 lg:col-start-7 flex flex-col gap-4">
+                    <h4 class="font-label-caps text-[12px] tracking-[0.2em] uppercase text-warm-ivory mb-1">Important
+                        Links</h4>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../Projects/index.html">Projects</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../Packages/index.html">Packages</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../Process/index.html">Process</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../About/index.html">About</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../Services/index.html">Services</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../ModularKitchenBangalore/index.html">Modular Kitchen</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../ModularWardrobeBangalore/index.html">Modular Wardrobe</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../LivingAndDiningBangalore/index.html">Living &amp; Dining</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../HomeInteriorsBangalore/index.html">Home Interiors</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors" href="../Blog/index.html">Blog</a>
+                </div>
+                <div class="lg:col-span-3 flex flex-col gap-4">
+                    <h4 class="font-label-caps text-[12px] tracking-[0.2em] uppercase text-warm-ivory mb-1">Contact</h4>
+                    <a href="mailto:sunrise.interiors@ymail.com"
+                        class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors">sunrise.interiors@ymail.com</a>
+                    <a href="tel:+919880522277"
+                        class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors">+91
+                        9880 522 277</a>
+                    <p class="text-body-md text-[14px] text-warm-ivory/70">#37/12, 2nd Main, Nagarbhavi Main Road, Near
+                        BDA Complex, Govindarajanagar, Vijayanagar, Bangalore - 560 040, Karnataka, India.</p>
+                    <div class="flex gap-4 mt-2 social-links">
+                        <a href="https://www.instagram.com/sunrise_interiors_bengaluru" target="_blank"
+                            rel="noopener noreferrer" aria-label="Instagram"
+                            class="social-link text-warm-ivory/70 hover:text-dream-amber transition-colors"><svg
+                                class="social-brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg></a>
+                        <a href="https://www.facebook.com/share/1DpnguJ3im/" target="_blank" rel="noopener noreferrer"
+                            aria-label="Facebook"
+                            class="social-link text-warm-ivory/70 hover:text-dream-amber transition-colors"><svg
+                                class="social-brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+                            </svg></a>
+                        <a href="https://www.youtube.com/@sunriseinteriorsbengaluru" target="_blank"
+                            rel="noopener noreferrer" aria-label="YouTube"
+                            class="social-link text-warm-ivory/70 hover:text-dream-amber transition-colors"><svg
+                                class="social-brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-warm-ivory/50 uppercase tracking-widest">
+                <span>© 2022 Sunrise Interiors. All rights reserved. <span class="ml-2 normal-case tracking-normal">Design By Faasadot (<a href="tel:8197473097" class="hover:text-warm-ivory">8197473097</a>)</span></span>
+                <div class="flex gap-6">
+                    <a href="javascript:void(0)" class="hover:text-warm-ivory transition-colors">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="hover:text-warm-ivory transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../shared/js/main.js?v=20261031-mobile-speed" defer></script>
+    <script>
+        (function () {
+            var modal = document.getElementById('video-modal');
+            var player = document.getElementById('video-modal-player');
+            var titleEl = document.getElementById('video-modal-title');
+            var cards = document.querySelectorAll('.video-card');
+
+            function openVideo(src, title) {
+                titleEl.textContent = title || 'Project video';
+                player.src = src;
+                modal.classList.add('is-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                player.play().catch(function () {});
+            }
+
+            function closeVideo() {
+                player.pause();
+                player.removeAttribute('src');
+                player.load();
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            cards.forEach(function (card) {
+                card.addEventListener('click', function () {
+                    openVideo(card.getAttribute('data-src'), card.getAttribute('data-title'));
+                });
+            });
+
+            modal.querySelectorAll('[data-close-video]').forEach(function (el) {
+                el.addEventListener('click', closeVideo);
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.classList.contains('is-open')) closeVideo();
+            });
+        })();
+    </script>
+    <script>
+        (function () {
+            var thumbnails = document.querySelectorAll('.thumb-vid[data-thumb-src]');
+
+            function loadThumbnail(video) {
+                if (video.dataset.loaded === 'true') return;
+                video.dataset.loaded = 'true';
+                video.src = video.dataset.thumbSrc;
+                video.addEventListener('loadedmetadata', function () {
+                    video.currentTime = Math.min(0.5, video.duration || 0.5);
+                }, { once: true });
+                video.load();
+            }
+
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) return;
+                        loadThumbnail(entry.target);
+                        observer.unobserve(entry.target);
+                    });
+                }, { rootMargin: '160px 0px' });
+                thumbnails.forEach(function (video) { observer.observe(video); });
+            } else {
+                thumbnails.forEach(loadThumbnail);
+            }
+        })();
+    </script>
+</body>
+</html>

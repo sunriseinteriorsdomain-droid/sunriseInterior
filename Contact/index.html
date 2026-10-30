@@ -1,0 +1,830 @@
+<html lang="en">
+
+<head>
+    <link rel="icon" href="../shared/images/favicon.webp" type="image/webp">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Book a Free Interior Design Consultation | Sunrise Interiors</title>
+    <meta name="description" content="Book a consultation with Sunrise Interiors for home interior design in Bangalore. Share your project details to get started." />
+    <link rel="canonical" href="https://sunriseinteriors.in/book_a_quote.html" />
+    <meta property="og:title" content="Book a Free Interior Design Consultation | Sunrise Interiors" />
+    <meta property="og:description" content="Book a consultation with Sunrise Interiors for home interior design in Bangalore. Share your project details to get started." />
+    <meta property="og:url" content="https://sunriseinteriors.in/book_a_quote.html" />
+    <meta property="og:type" content="website" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+    <link rel="stylesheet" href="../shared/css/global.css?v=20261026-menu2" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+        id="tailwind-config">tailwind.config = { theme: { extend: { "colors": { "tertiary-container": "#2a2618", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#484550", "on-tertiary-fixed-variant": "#4c4737", "surface-dim": "#dbdad8", "outline": "#79767c", "on-error": "#ffffff", "on-primary": "#ffffff", "inverse-surface": "#30302f", "surface-tint": "#605d68", "on-primary-fixed": "#1c1a24", "primary-fixed-dim": "#c9c4d2", "on-error-container": "#93000a", "error-container": "#ffdad6", "surface-container": "#efedec", "warm-ivory": "#FCFAF8", "dream-amber": "#FF7D00", "on-primary-container": "#8f8b98", "surface-bright": "#fbf9f7", "tertiary": "#151106", "secondary-container": "#fd7c00", "surface-container-highest": "#e4e2e0", "surface-container-high": "#eae8e6", "architectural-line": "rgba(39, 37, 47, 0.1)", "on-secondary": "#ffffff", "outline-variant": "#c9c5cb", "primary": "#12101a", "error": "#ba1a1a", "muted-stone": "#535254", "secondary-fixed-dim": "#ffb689", "secondary": "#984800", "inverse-on-surface": "#f2f0ee", "on-tertiary-fixed": "#1f1b0e", "background": "#fbf9f7", "primary-container": "#27252f", "on-tertiary": "#ffffff", "on-tertiary-container": "#948d7a", "surface": "#fbf9f7", "primary-fixed": "#e6e0ee", "deep-charcoal": "#27252F", "on-secondary-fixed-variant": "#733500", "surface-variant": "#e4e2e0", "inverse-primary": "#c9c4d2", "on-surface-variant": "#48464b", "on-secondary-container": "#5c2900", "tertiary-fixed-dim": "#cec6b1", "secondary-fixed": "#ffdbc8", "tertiary-fixed": "#ebe2cc", "surface-container-low": "#f5f3f1", "on-secondary-fixed": "#311300", "on-background": "#1b1c1b", "on-surface": "#1b1c1b" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-mobile": "16px", "stack-lg": "80px", "stack-sm": "24px", "container-max": "1440px", "gutter": "24px", "stack-md": "48px", "margin-desktop": "64px" }, "fontFamily": { "button": ["Hanken Grotesk"], "display-lg": ["Libre Caslon Text"], "body-md": ["Hanken Grotesk"], "headline-md": ["Libre Caslon Text"], "label-caps": ["Hanken Grotesk"], "body-lg": ["Hanken Grotesk"], "headline-lg-mobile": ["Libre Caslon Text"], "headline-lg": ["Libre Caslon Text"] }, "fontSize": { "button": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }], "display-lg": ["72px", { "lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-md": ["32px", { "lineHeight": "42px", "fontWeight": "400" }], "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "400" }], "headline-lg": ["48px", { "lineHeight": "56px", "fontWeight": "400" }] } } } }</script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Libre+Caslon+Text:wght@400&display=swap"
+        rel="stylesheet" />
+    <style>
+        #quote-form .form-step {
+            display: none;
+        }
+        #quote-form .form-step.is-active {
+            display: block;
+        }
+        #quote-form #success-state.is-visible {
+            display: flex !important;
+            flex-direction: column;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            visibility: visible !important;
+            position: relative;
+            inset: auto;
+        }
+        #quote-form #success-state {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background font-body-md text-on-surface">
+    <header class="fixed top-0 w-full z-50 transition-all duration-500 border-b border-white/10" id="global-header">
+        <div
+            class="h-24 max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between">
+            <a href="../Home/index.html" class="flex items-center group">
+                <img class="site-logo" src="../shared/images/logo1.webp" alt="Sunrise Interiors" />
+            </a>
+            <nav class="hidden lg:flex items-center gap-10"
+                data-active-classes="text-dream-amber border-b-2 border-dream-amber">
+                <a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors"
+                    data-path="home" href="../Home/index.html">Home</a>
+                <a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors"
+                    data-path="about" href="../About/index.html">About</a>
+                <a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors"
+                    data-path="projects" href="../Projects/index.html">Projects</a>
+                <a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors"
+                    data-path="services" href="../Services/index.html">Services</a>
+                <a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors"
+                    data-path="packages" href="../Packages/index.html">Packages</a>
+                <a class="font-button text-button uppercase text-warm-ivory/80 hover:text-warm-ivory transition-colors"
+                    data-path="process" href="../Process/index.html">Process</a>
+                <a aria-current="page"
+                    class="font-button uppercase transition-colors text-dream-amber border-b-2 border-dream-amber"
+                    data-path="contact" href="../Contact/index.html">Contact</a>
+            </nav>
+            <div class="flex items-center gap-8">
+
+                <div class="lg:hidden flex items-center cursor-pointer" id="mobile-menu-btn">
+                    <span class="material-symbols-outlined text-warm-ivory text-[28px]">menu</span>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-[#12101a]/95 backdrop-blur-xl z-[60] flex flex-col items-center justify-start gap-6 overflow-y-auto pt-24 pb-12 transition-transform duration-500 translate-x-full hidden">
+        <div class="absolute top-8 right-margin-mobile cursor-pointer" id="mobile-menu-close">
+            <span class="material-symbols-outlined text-warm-ivory text-[32px]">close</span>
+        </div>
+        <a href="../Home/index.html"
+            class="font-button text-2xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Home</a>
+        <a href="../Projects/index.html"
+            class="font-button text-2xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Projects</a>
+        <a href="../Services/index.html"
+            class="font-button text-2xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Services</a>
+        <a href="../Packages/index.html"
+            class="font-button text-2xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Packages</a>
+        <a href="../Process/index.html"
+            class="font-button text-2xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Process</a>
+        <a href="../About/index.html"
+            class="font-button text-2xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">About</a>
+        <a href="../Contact/index.html"
+            class="font-button text-2xl uppercase text-warm-ivory hover:text-dream-amber transition-colors">Contact</a>
+        <a href="../Contact/index.html"
+            class="mt-8 bg-dream-amber text-on-primary font-button px-8 py-3 rounded-full hover:bg-secondary-container transition-all">BOOK
+            A QUOTE</a>
+        <a target="_blank" href="https://wa.me/919880522277?text=Hi%2C%20I%20would%20like%20to%20book%20a%20quote."
+            class="flex items-center gap-2 font-button text-warm-ivory mt-4">
+            <span class="material-symbols-outlined text-[24px]">chat</span>WhatsApp
+        </a>
+    </div>
+    <main class="w-full page-main">
+        <div class="flex flex-col w-full relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[calc(100vh-80px)]">
+                <!-- Left Image Panel (Architectural Context) -->
+                <div class="hidden lg:block lg:col-span-5 relative bg-surface-container-lowest">
+                    <div class="sticky top-20 w-full h-[calc(100vh-80px)] p-8">
+                        <div class="w-full h-full relative overflow-hidden rounded-xl">
+                            <div class="absolute inset-0 bg-cover bg-center w-full h-full transition-transform duration-[10s] hover:scale-105 ease-in-out bg-quote-screen"
+                                data-alt="A highly detailed architectural photograph of a minimalist luxury living room. The space features large floor-to-ceiling windows letting in soft dream lighting. The materials are warm ivory tones, muted stone textures, and rich deep charcoal accents. A sleek, modern sofa sits on a textured rug. The atmosphere is calm, standardized luxury, feeling like a high-end editorial spread.">
+                            </div>
+                            <!-- Gradient overlay for depth -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-tertiary-container/80 via-transparent to-transparent mix-blend-multiply">
+                            </div>
+                            <div class="absolute bottom-12 left-12 right-12 z-10">
+                                <p class="font-headline-md text-headline-md text-on-primary mb-4 max-w-sm">Standardized
+                                    luxury, tailored to your space.</p>
+                                <div class="flex items-center gap-4 text-on-primary-fixed-variant">
+                                    <span class="w-12 h-[1px] bg-on-primary-fixed-variant"></span>
+                                    <span
+                                        class="font-label-caps text-label-caps uppercase tracking-widest text-on-primary">The
+                                        Process Begins Here</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Form Panel -->
+                <div
+                    class="col-span-1 lg:col-span-7 flex flex-col justify-center px-margin-mobile lg:px-margin-desktop py-stack-md relative z-10 bg-surface">
+                    <div class="max-w-2xl w-full mx-auto relative">
+                        <!-- Progress Header -->
+                        <div class="mb-8 flex flex-col gap-6" id="progress-container">
+                            <div class="flex justify-between items-center text-on-surface-variant">
+                                <span class="font-label-caps text-label-caps uppercase tracking-wider"
+                                    id="step-indicator">Step 1 of 5</span>
+                                <button
+                                    class="font-button text-button uppercase text-on-surface-variant hover:text-secondary transition-colors opacity-0 pointer-events-none flex items-center gap-2"
+                                    id="btn-back" type="button">
+                                    <span class="material-symbols-outlined text-[16px]">arrow_back</span> Back
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Form Area -->
+                        <form class="relative w-full" id="quote-form">
+                            <!-- STEP 1: What are you designing? -->
+                            <div class="form-step is-active transition-all duration-300"
+                                data-step="1">
+                                <h1 class="font-headline-lg text-headline-lg text-on-surface mb-8">What are you
+                                    designing?</h1>
+                                <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                                    <!-- Option Cards -->
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col gap-4 group focus:outline-none"
+                                        data-value="1BHK" type="button">
+                                        <span
+                                            class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary transition-colors text-[32px]">apartment</span>
+                                        <span class="font-button text-button text-on-surface group-hover:text-primary">1
+                                            BHK (Home)</span>
+                                    </button>
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col gap-4 group focus:outline-none"
+                                        data-value="2BHK" type="button">
+                                        <span
+                                            class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary transition-colors text-[32px]">real_estate_agent</span>
+                                        <span class="font-button text-button text-on-surface group-hover:text-primary">2
+                                            BHK (Home)</span>
+                                    </button>
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col gap-4 group focus:outline-none"
+                                        data-value="3BHK" type="button">
+                                        <span
+                                            class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary transition-colors text-[32px]">domain</span>
+                                        <span class="font-button text-button text-on-surface group-hover:text-primary">3
+                                            BHK+ (Home)</span>
+                                    </button>
+                                </div>
+                                <input id="input-property-type" name="property_type" required="" type="hidden" />
+                            </div>
+                            <!-- STEP 2: What do you need? -->
+                            <div class="form-step transition-all duration-300"
+                                data-step="2">
+                                <h3 class="font-headline-lg text-headline-lg text-on-surface mb-8">What do you
+                                    need?</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col gap-2 group focus:outline-none"
+                                        data-value="Full Home" type="button">
+                                        <span
+                                            class="font-body-lg text-body-lg text-on-surface group-hover:text-primary">Full
+                                            Home Interiors</span>
+                                        <span class="font-body-md text-body-md text-on-surface-variant">End-to-end
+                                            design and execution.</span>
+                                    </button>
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col gap-2 group focus:outline-none"
+                                        data-value="Kitchen & Wardrobes" type="button">
+                                        <span
+                                            class="font-body-lg text-body-lg text-on-surface group-hover:text-primary">Kitchen
+                                            & Wardrobes</span>
+                                        <span class="font-body-md text-body-md text-on-surface-variant">Modular
+                                            solutions only.</span>
+                                    </button>
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col gap-2 group focus:outline-none"
+                                        data-value="Living & Dining" type="button">
+                                        <span
+                                            class="font-body-lg text-body-lg text-on-surface group-hover:text-primary">Living
+                                            & Dining Room</span>
+                                        <span class="font-body-md text-body-md text-on-surface-variant">Entertainment
+                                            units, seating, decor.</span>
+                                    </button>
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col gap-2 group focus:outline-none"
+                                        data-value="Renovation" type="button">
+                                        <span
+                                            class="font-body-lg text-body-lg text-on-surface group-hover:text-primary">Civil
+                                            Renovation</span>
+                                        <span class="font-body-md text-body-md text-on-surface-variant">Structural
+                                            changes and upgrades.</span>
+                                    </button>
+                                </div>
+                                <input id="input-service-need" name="service_need" required="" type="hidden" />
+                            </div>
+                            <!-- STEP 3: Budget? -->
+                            <div class="form-step transition-all duration-300"
+                                data-step="3">
+                                <h3 class="font-headline-lg text-headline-lg text-on-surface mb-8">Estimated
+                                    Budget?</h3>
+                                <div class="flex flex-col gap-4">
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex justify-between items-center group focus:outline-none"
+                                        data-value="Under 10L" type="button">
+                                        <span
+                                            class="font-body-lg text-body-lg text-on-surface group-hover:text-primary">Under
+                                            ₹10 Lakhs</span>
+                                        <span
+                                            class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                                    </button>
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex justify-between items-center group focus:outline-none"
+                                        data-value="10L - 25L" type="button">
+                                        <span
+                                            class="font-body-lg text-body-lg text-on-surface group-hover:text-primary">₹10
+                                            Lakhs - ₹25 Lakhs</span>
+                                        <span
+                                            class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                                    </button>
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex justify-between items-center group focus:outline-none"
+                                        data-value="25L - 50L" type="button">
+                                        <span
+                                            class="font-body-lg text-body-lg text-on-surface group-hover:text-primary">₹25
+                                            Lakhs - ₹50 Lakhs</span>
+                                        <span
+                                            class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                                    </button>
+                                    <button
+                                        class="option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex justify-between items-center group focus:outline-none"
+                                        data-value="Above 50L" type="button">
+                                        <span
+                                            class="font-body-lg text-body-lg text-on-surface group-hover:text-primary">Above
+                                            ₹50 Lakhs</span>
+                                        <span
+                                            class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                                    </button>
+                                </div>
+                                <input id="input-budget" name="budget" required="" type="hidden" />
+                            </div>
+                            <!-- STEP 4: Project Details -->
+                            <div class="form-step transition-all duration-300"
+                                data-step="4">
+                                <h3 class="font-headline-lg text-headline-lg text-on-surface mb-8">Tell us about
+                                    you.</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+                                    <div class="flex flex-col gap-2 md:col-span-2">
+                                        <label
+                                            class="font-label-caps text-label-caps text-on-surface-variant uppercase ml-2">Full
+                                            Name</label>
+                                        <input
+                                            class="w-full bg-surface-container-lowest py-4 px-6 text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container transition-colors rounded-lg shadow-sm"
+                                            id="input-name" placeholder="John Doe" required="" minlength="2"
+                                            type="text" />
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label
+                                            class="font-label-caps text-label-caps text-on-surface-variant uppercase ml-2">Email
+                                            Address</label>
+                                        <input
+                                            class="w-full bg-surface-container-lowest py-4 px-6 text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container transition-colors rounded-lg shadow-sm"
+                                            id="input-email" placeholder="john@example.com" required=""
+                                            type="email" />
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label
+                                            class="font-label-caps text-label-caps text-on-surface-variant uppercase ml-2">Phone
+                                            Number</label>
+                                        <input
+                                            class="w-full bg-surface-container-lowest py-4 px-6 text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container transition-colors rounded-lg shadow-sm"
+                                            id="input-phone" placeholder="9000000000" required="" pattern="[0-9]{10}"
+                                            title="Please enter exactly 10 digits" maxlength="10" type="tel" />
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label
+                                            class="font-label-caps text-label-caps text-on-surface-variant uppercase ml-2">Project
+                                            Location</label>
+                                        <input
+                                            class="w-full bg-surface-container-lowest py-4 px-6 text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container transition-colors rounded-lg shadow-sm"
+                                            id="input-location" placeholder="City or Area" required="" type="text" />
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label
+                                            class="font-label-caps text-label-caps text-on-surface-variant uppercase ml-2">Pincode</label>
+                                        <input
+                                            class="w-full bg-surface-container-lowest py-4 px-6 text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container transition-colors rounded-lg shadow-sm"
+                                            id="input-pincode" placeholder="560001" required="" pattern="[0-9]{6}"
+                                            title="Please enter a valid 6-digit Pincode" maxlength="6" type="text" />
+                                    </div>
+                                </div>
+                                <div class="mt-10 flex justify-end w-full">
+                                    <button
+                                        class="w-full md:w-auto bg-dream-amber text-on-primary font-button text-button px-10 py-4 rounded-full shadow-lg transition-all flex items-center justify-center gap-2 text-lg uppercase tracking-wider hover:shadow-xl hover:bg-secondary-container active:scale-[0.98]"
+                                        type="button" id="btn-final-submit">Continue</button>
+                                </div>
+                            </div>
+                            <!-- STEP 5: Contact Preference -->
+                            <div class="form-step transition-all duration-300"
+                                data-step="5">
+                                <h3 class="font-headline-lg text-headline-lg text-on-surface mb-4">Almost there.
+                                </h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant mb-8">How would you prefer
+                                    our design team to reach out to you?</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+                                    <button
+                                        class="option-btn w-full text-center p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col items-center justify-center gap-3 group focus:outline-none"
+                                        data-value="WhatsApp" type="button">
+                                        <span
+                                            class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary text-[28px]">chat</span>
+                                        <span class="font-button text-button text-on-surface">WhatsApp</span>
+                                    </button>
+                                    <button
+                                        class="option-btn w-full text-center p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col items-center justify-center gap-3 group focus:outline-none"
+                                        data-value="Phone Call" type="button">
+                                        <span
+                                            class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary text-[28px]">call</span>
+                                        <span class="font-button text-button text-on-surface">Phone Call</span>
+                                    </button>
+                                    <button
+                                        class="option-btn w-full text-center p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col items-center justify-center gap-3 group focus:outline-none"
+                                        data-value="Email" type="button">
+                                        <span
+                                            class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary text-[28px]">mail</span>
+                                        <span class="font-button text-button text-on-surface">Email Only</span>
+                                    </button>
+                                </div>
+                                <input id="input-contact-preference" name="contact_preference" required=""
+                                    type="hidden" />
+                                <div class="flex flex-col gap-4">
+                                    <button
+                                        class="w-full bg-secondary text-on-secondary font-button text-button py-5 rounded-lg shadow-md hover:shadow-lg transition-all hover:bg-secondary-container active:scale-[0.98] uppercase tracking-wider"
+                                        id="btn-submit" type="submit">
+                                        Submit Request
+                                    </button>
+                                    <p
+                                        class="text-center font-label-caps text-label-caps text-on-surface-variant mt-4 opacity-70">
+                                        By submitting, you agree to our Terms of Service and Privacy Policy.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- SUCCESS STATE -->
+                            <div class="flex-col items-center justify-center text-center transition-all duration-700 bg-surface py-8"
+                                id="success-state">
+                                <div
+                                    class="w-24 h-24 rounded-full bg-surface-container-low flex items-center justify-center mb-8 relative">
+                                    <!-- Decorative animated SVG ring -->
+                                    <svg class="absolute inset-0 w-full h-full animate-[spin_10s_linear_infinite] text-primary-fixed-dim"
+                                        viewbox="0 0 100 100">
+                                        <circle cx="50" cy="50" fill="none" r="48" stroke="currentColor"
+                                            stroke-dasharray="4 8" stroke-width="1"></circle>
+                                    </svg>
+                                    <span class="material-symbols-outlined text-[40px] text-secondary">check</span>
+                                </div>
+                                <h3 class="font-headline-lg text-headline-lg text-on-surface mb-4">Request Received</h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto mb-8">
+                                    Thank you for considering Sunrise Interiors. WhatsApp has been opened with your
+                                    details — please send the message so our team receives your request. We will reach
+                                    out shortly after.
+                                </p>
+                                <a class="font-button text-button uppercase text-secondary hover:text-secondary-container transition-colors tracking-widest border-b border-transparent hover:border-secondary pb-1"
+                                    href="../Home/index.html">
+                                    Return to Home
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const steps = document.querySelectorAll('.form-step');
+                const progressBar = document.getElementById('progress-bar');
+                const stepIndicator = document.getElementById('step-indicator');
+                const btnBack = document.getElementById('btn-back');
+                const form = document.getElementById('quote-form');
+                const successState = document.getElementById('success-state');
+                const progressContainer = document.getElementById('progress-container');
+
+                let currentStep = 1;
+                const totalSteps = 5;
+
+                // Function to update UI based on step
+                const updateStep = (newStep) => {
+                    const currentEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+                    if (currentEl) {
+                        currentEl.classList.remove('is-active');
+                    }
+
+                    currentStep = newStep;
+
+                    const newEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+                    if (newEl) {
+                        newEl.classList.add('is-active');
+                        newEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+
+                    // Update Progress
+                    const progressPercentage = (currentStep / totalSteps) * 100;
+                    if (progressBar) progressBar.style.width = `${progressPercentage}%`;
+                    stepIndicator.textContent = `Step ${currentStep} of ${totalSteps}`;
+
+                    // Back button visibility
+                    if (currentStep > 1) {
+                        btnBack.classList.remove('opacity-0', 'pointer-events-none');
+                        btnBack.classList.add('opacity-100', 'pointer-events-auto');
+                    } else {
+                        btnBack.classList.add('opacity-0', 'pointer-events-none');
+                        btnBack.classList.remove('opacity-100', 'pointer-events-auto');
+                    }
+                };
+
+                // Handle Option Button Clicks (Steps 1, 2, 3, 5)
+                document.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        const parentStep = this.closest('.form-step');
+                        const stepNum = parseInt(parentStep.getAttribute('data-step'));
+                        const value = this.getAttribute('data-value');
+
+                        // Visual selection state
+                        const siblings = parentStep.querySelectorAll('.option-btn');
+                        siblings.forEach(s => {
+                            // Reset to default classes
+                            s.className = 'option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col gap-4 group focus:outline-none';
+                            if (stepNum === 3) s.className = 'option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex justify-between items-center group focus:outline-none';
+                            if (stepNum === 2) s.className = 'option-btn w-full text-left p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col gap-2 group focus:outline-none';
+                            if (stepNum === 5) s.className = 'option-btn w-full text-center p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg flex flex-col items-center justify-center gap-3 group focus:outline-none';
+
+                            // Reset text colors within
+                            const texts = s.querySelectorAll('span');
+                            texts.forEach(t => {
+                                t.classList.remove('text-on-primary', 'text-on-primary-fixed-variant');
+                                if (t.classList.contains('font-button') || t.classList.contains('font-body-lg')) t.classList.add('text-on-surface');
+                                if (t.classList.contains('font-body-md') || t.classList.contains('material-symbols-outlined')) t.classList.add('text-on-surface-variant');
+                            });
+                        });
+
+                        // Apply active classes to clicked button
+                        // Background shift for selection (No borders)
+                        this.classList.remove('bg-surface-container-low', 'hover:bg-surface-container-high');
+                        this.classList.add('bg-deep-charcoal', 'shadow-md');
+
+                        // Update text colors for contrast on deep-charcoal
+                        const texts = this.querySelectorAll('span');
+                        texts.forEach(t => {
+                            t.classList.remove('text-on-surface', 'text-on-surface-variant', 'group-hover:text-primary', 'group-hover:text-secondary');
+                            t.classList.add('text-on-primary');
+                            if (t.classList.contains('opacity-0')) t.classList.replace('opacity-0', 'opacity-100'); // For step 3 arrow
+                        });
+
+                        // Set hidden input value
+                        const inputId = parentStep.querySelector('input[type="hidden"]').id;
+                        document.getElementById(inputId).value = value;
+
+                        // Auto-advance after short delay, unless it's step 5
+                        if (stepNum < totalSteps && stepNum !== 4) {
+                            setTimeout(() => {
+                                updateStep(stepNum + 1);
+                            }, 400);
+                        }
+                    });
+                });
+
+
+                // Dynamic Button Enable/Disable logic removed as per user request
+
+                // Step 4 "Continue" button → go to contact preference step
+                const btnFinalSubmit = document.getElementById('btn-final-submit');
+                if (btnFinalSubmit) {
+                    btnFinalSubmit.addEventListener('click', () => {
+                        const step4 = document.querySelector('.form-step[data-step="4"]');
+                        const inputs = step4.querySelectorAll('input[required]');
+                        let isValid = true;
+
+                        for (let input of inputs) {
+                            if (!input.checkValidity()) {
+                                input.reportValidity();
+                                isValid = false;
+                                break;
+                            }
+                        }
+
+                        if (isValid) {
+                            updateStep(5);
+                        }
+                    });
+                }
+
+                // Back button
+                btnBack.addEventListener('click', () => {
+                    if (currentStep > 1) {
+                        updateStep(currentStep - 1);
+                    }
+                });
+
+                // Form Submit (Step 5)
+                let quoteSubmitting = false;
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (quoteSubmitting) return;
+
+                    const contactPref = document.getElementById('input-contact-preference').value;
+                    if (!contactPref) {
+                        alert('Please select how you would like us to contact you.');
+                        return;
+                    }
+
+                    quoteSubmitting = true;
+                    const submitBtn = document.getElementById('btn-submit');
+                    if (submitBtn) submitBtn.disabled = true;
+
+                    const name = document.getElementById('input-name').value.trim();
+                    const email = document.getElementById('input-email').value.trim();
+                    const phone = document.getElementById('input-phone').value.trim();
+                    const location = document.getElementById('input-location').value.trim();
+                    const pincode = document.getElementById('input-pincode').value.trim();
+                    const propertyType = document.getElementById('input-property-type').value || 'N/A';
+                    const serviceNeed = document.getElementById('input-service-need').value || 'N/A';
+                    const budget = document.getElementById('input-budget').value || 'N/A';
+                    const packageDetails = `${propertyType} - ${serviceNeed} (${budget})`;
+
+                    const waText = `Hello Sunrise Interiors, I would like to book a quote.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nProject Location: ${location}\nPincode: ${pincode}\nProject/Package: ${packageDetails}\nPreferred Contact: ${contactPref}\n\nPlease contact me regarding my interior design requirement.`;
+                    window.open(`https://wa.me/919880522277?text=${encodeURIComponent(waText)}`, '_blank');
+
+                    progressContainer.classList.add('hidden');
+                    steps.forEach(step => step.classList.remove('is-active'));
+                    successState.classList.add('is-visible');
+                });
+            });
+        </script>
+    </main>
+    <footer class="bg-tertiary text-warm-ivory border-t border-white/10 pt-10 pb-6">
+        <div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+                <div class="lg:col-span-4 flex flex-col items-start">
+                    <span
+                        class="font-display-lg text-3xl text-warm-ivory tracking-wider group-hover:text-dream-amber transition-colors">Sunrise
+                        Interiors</span>
+                    <p class="font-body-md text-[14px] text-warm-ivory/70 max-w-sm mb-6 leading-relaxed">The best
+                        interior designers in Bangalore have come together to create Sunrise Interiors: thoughtful home
+                        interiors shaped by skilled craftsmanship, honest guidance, and a clear focus on how people
+                        live.</p>
+                </div>
+                <div class="lg:col-span-2 lg:col-start-7 flex flex-col gap-4">
+                    <h4 class="font-label-caps text-[12px] tracking-[0.2em] uppercase text-warm-ivory mb-1">Important
+                        Links</h4>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../Projects/index.html">Projects</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../Packages/index.html">Packages</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../Process/index.html">Process</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../About/index.html">About</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../Services/index.html">Services</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../ModularKitchenBangalore/index.html">Modular Kitchen</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../ModularWardrobeBangalore/index.html">Modular Wardrobe</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../LivingAndDiningBangalore/index.html">Living &amp; Dining</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors"
+                        href="../HomeInteriorsBangalore/index.html">Home Interiors</a>
+                    <a class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors" href="../Blog/index.html">Blog</a>
+                </div>
+                <div class="lg:col-span-3 flex flex-col gap-4">
+                    <h4 class="font-label-caps text-[12px] tracking-[0.2em] uppercase text-warm-ivory mb-1">Contact</h4>
+                    <a href="mailto:sunrise.interiors@ymail.com"
+                        class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors">sunrise.interiors@ymail.com</a>
+                    <a href="tel:+919880522277"
+                        class="text-body-md text-[14px] text-warm-ivory/70 hover:text-dream-amber transition-colors">+91
+                        9880 522 277</a>
+                    <p class="text-body-md text-[14px] text-warm-ivory/70">#37/12, 2nd Main, Nagarbhavi Main Road, Near
+                        BDA Complex, Govindarajanagar, Vijayanagar, Bangalore - 560 040, Karnataka, India.</p>
+                    <div class="flex gap-4 mt-2 social-links">
+                        <a href="https://www.instagram.com/sunrise_interiors_bengaluru" target="_blank"
+                            rel="noopener noreferrer" aria-label="Instagram"
+                            class="social-link text-warm-ivory/70 hover:text-dream-amber transition-colors"><svg
+                                class="social-brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg></a>
+                        <a href="https://www.facebook.com/share/1DpnguJ3im/" target="_blank" rel="noopener noreferrer"
+                            aria-label="Facebook"
+                            class="social-link text-warm-ivory/70 hover:text-dream-amber transition-colors"><svg
+                                class="social-brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+                            </svg></a>
+                        <a href="https://www.youtube.com/@sunriseinteriorsbengaluru" target="_blank"
+                            rel="noopener noreferrer" aria-label="YouTube"
+                            class="social-link text-warm-ivory/70 hover:text-dream-amber transition-colors"><svg
+                                class="social-brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-warm-ivory/50 uppercase tracking-widest">
+                <span>© 2022 Sunrise Interiors. All rights reserved. <span class="ml-2 normal-case tracking-normal">Design By Faasadot (<a href="tel:8197473097" class="hover:text-warm-ivory">8197473097</a>)</span></span>
+                <div class="flex gap-6">
+                    <a href="javascript:void(0)" class="hover:text-warm-ivory transition-colors">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="hover:text-warm-ivory transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div
+        class="fixed bottom-0 w-full bg-tertiary/90 backdrop-blur-xl border-t border-white/10 lg:hidden z-50 flex items-stretch h-16">
+        <a href="tel:+919880522277"
+            class="flex-1 flex flex-col items-center justify-center gap-1 font-label-caps text-[10px] text-warm-ivory hover:text-dream-amber transition-colors">
+            <span class="material-symbols-outlined text-[20px]">call</span>CALL
+        </a>
+        <a target="_blank" href="https://wa.me/919880522277?text=Hi%2C%20I%20would%20like%20to%20book%20a%20quote."
+            class="flex-1 flex flex-col items-center justify-center gap-1 font-label-caps text-[10px] text-warm-ivory border-x border-white/10 hover:text-dream-amber transition-colors">
+            <span class="material-symbols-outlined text-[20px]">chat</span>WHATSAPP
+        </a>
+        <a href="../Contact/index.html"
+            class="flex-[1.5] bg-dream-amber text-on-primary font-button text-[12px] uppercase flex items-center justify-center hover:bg-secondary-container transition-colors">
+            GET QUOTE
+        </a>
+    </div>
+    <script src="../shared/js/main.js?v=20261031-mobile-speed" defer></script>
+
+    <!-- Enquiry Modal -->
+    <div id="enquiry-modal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 premium-popup-overlay">
+        <div id="enquiry-modal-backdrop" class="absolute inset-0 bg-primary/80 backdrop-blur-md"></div>
+
+        <div id="enquiry-modal-content"
+            class="relative w-full max-w-[400px] bg-surface-container-lowest rounded-[24px] shadow-2xl overflow-hidden flex flex-col premium-popup-content">
+
+            <!-- Header -->
+            <button type="button" id="close-enquiry-modal"
+                class="absolute top-4 right-4 text-on-surface-variant hover:text-dream-amber transition-colors z-10">
+                <span class="material-symbols-outlined text-[24px]">close</span>
+            </button>
+
+            <!-- Body -->
+            <div class="p-6 pt-12 overflow-y-auto custom-scrollbar">
+                <form id="enquiry-form" class="flex flex-col gap-4">
+
+                    <!-- STEP 1 -->
+                    <div id="step-1" class="flex flex-col gap-4 transition-all duration-300">
+                        <div class="flex flex-col gap-1.5">
+                            <input type="text" id="enq-name" required
+                                class="bg-transparent border border-outline-variant rounded-[8px] px-4 py-2.5 font-body-md text-on-surface focus:outline-none focus:border-dream-amber focus:ring-1 focus:ring-dream-amber transition-all placeholder:text-outline"
+                                placeholder="Name">
+                        </div>
+
+                        <div class="flex flex-col gap-1.5 relative">
+                            <span
+                                class="absolute left-4 top-2.5 font-body-md text-on-surface border-r border-outline-variant pr-3 flex items-center gap-1">
+                                🇮🇳 <span
+                                    class="material-symbols-outlined text-[16px] text-outline">arrow_drop_down</span>
+                            </span>
+                            <input type="tel" id="enq-mobile" required
+                                class="bg-transparent border border-outline-variant rounded-[8px] pl-[84px] pr-4 py-2.5 font-body-md text-on-surface focus:outline-none focus:border-dream-amber focus:ring-1 focus:ring-dream-amber transition-all placeholder:text-outline"
+                                placeholder="Phone Number">
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <input type="email" id="enq-email" required
+                                class="bg-transparent border border-outline-variant rounded-[8px] px-4 py-2.5 font-body-md text-on-surface focus:outline-none focus:border-dream-amber focus:ring-1 focus:ring-dream-amber transition-all placeholder:text-outline"
+                                placeholder="Email Address">
+                        </div>
+
+                        <div class="flex flex-col gap-1.5 relative">
+                            <select id="enq-type" required
+                                class="bg-transparent border border-outline-variant rounded-[8px] px-4 py-2.5 font-body-md text-on-surface focus:outline-none focus:border-dream-amber focus:ring-1 focus:ring-dream-amber transition-all appearance-none text-outline">
+                                <option value="" disabled selected>Project Type</option>
+                                <option value="Residential" class="text-on-surface">Residential</option>
+                                <option value="Commercial" class="text-on-surface">Commercial</option>
+                                <option value="Other" class="text-on-surface">Other</option>
+                            </select>
+                            <span
+                                class="absolute right-4 top-2.5 pointer-events-none material-symbols-outlined text-outline">expand_more</span>
+                        </div>
+
+                        <label class="flex items-center gap-3 cursor-pointer mt-2 group">
+                            <div
+                                class="relative flex items-center justify-center w-6 h-6 border-2 border-dream-amber rounded-[6px] bg-transparent">
+                                <input type="checkbox" id="enq-whatsapp-optin"
+                                    class="peer absolute opacity-0 w-full h-full cursor-pointer" checked>
+                                <span
+                                    class="material-symbols-outlined text-[18px] text-dream-amber opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+                            </div>
+                            <span class="font-body-md text-primary text-[16px]">Send me updates on WhatsApp</span>
+                        </label>
+
+                        <div class="pt-4">
+                            <button type="button" id="next-step-btn"
+                                class="w-full bg-[#f4b6b6] text-white font-label-caps text-[14px] uppercase tracking-[0.2em] py-3.5 rounded-[12px] shadow-sm hover:bg-[#ef9d9d] transition-colors font-bold">
+                                NEXT
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div id="step-2" class="hidden flex-col gap-4 transition-all duration-300 opacity-0 translate-x-8">
+                        <div class="flex flex-col gap-1.5 relative">
+                            <select id="enq-location" required
+                                class="bg-transparent border border-outline-variant rounded-[8px] px-4 py-2.5 font-body-md text-on-surface focus:outline-none focus:border-dream-amber focus:ring-1 focus:ring-dream-amber transition-all appearance-none text-outline">
+                                <option value="" disabled selected>Select City</option>
+                                <option value="Bangalore" class="text-on-surface">Bangalore</option>
+                                <option value="Mumbai" class="text-on-surface">Mumbai</option>
+                                <option value="Delhi" class="text-on-surface">Delhi</option>
+                                <option value="Hyderabad" class="text-on-surface">Hyderabad</option>
+                                <option value="Other" class="text-on-surface">Other</option>
+                            </select>
+                            <span
+                                class="absolute right-4 top-2.5 pointer-events-none material-symbols-outlined text-outline">expand_more</span>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5 relative">
+                            <select id="enq-budget" required
+                                class="bg-transparent border border-outline-variant rounded-[8px] px-4 py-2.5 font-body-md text-on-surface focus:outline-none focus:border-dream-amber focus:ring-1 focus:ring-dream-amber transition-all appearance-none text-outline">
+                                <option value="" disabled selected>Budget Range</option>
+                                <option value="Under 20L" class="text-on-surface">Under ₹20L</option>
+                                <option value="20L - 50L" class="text-on-surface">₹20L - ₹50L</option>
+                                <option value="50L - 1Cr" class="text-on-surface">₹50L - ₹1Cr</option>
+                                <option value="1Cr+" class="text-on-surface">₹1Cr+</option>
+                            </select>
+                            <span
+                                class="absolute right-4 top-2.5 pointer-events-none material-symbols-outlined text-outline">expand_more</span>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <textarea id="enq-message" rows="3"
+                                class="bg-transparent border border-outline-variant rounded-[8px] px-4 py-2.5 font-body-md text-on-surface focus:outline-none focus:border-dream-amber focus:ring-1 focus:ring-dream-amber transition-all resize-none placeholder:text-outline"
+                                placeholder="Message / Project Requirements"></textarea>
+                        </div>
+
+                        <!-- Success Message Container -->
+                        <div id="enquiry-success"
+                            class="hidden bg-green-50/50 border border-green-200 rounded-[12px] p-4 flex-col items-center justify-center text-center gap-2">
+                            <span class="material-symbols-outlined text-green-600 text-[24px]">check_circle</span>
+                            <p class="font-body-md text-green-800">Opening WhatsApp...</p>
+                        </div>
+
+                        <div class="pt-2 flex flex-col gap-3">
+                            <button type="submit" id="enquiry-submit-btn"
+                                class="w-full bg-[#f4b6b6] text-white font-label-caps text-[14px] uppercase tracking-[0.2em] py-3.5 rounded-[12px] shadow-sm hover:bg-[#ef9d9d] transition-colors font-bold">
+                                SUBMIT
+                            </button>
+                            <button type="button" id="prev-step-btn"
+                                class="w-full bg-transparent text-outline-variant font-label-caps text-[12px] uppercase tracking-[0.2em] py-2 rounded-[12px] hover:text-on-surface transition-colors">
+                                BACK
+                            </button>
+                        </div>
+                    </div>
+
+                    <p class="text-center font-body-md text-[12px] text-on-surface-variant mt-2">
+                        By submitting this form, you agree to the <a href="#"
+                            class="text-[#f4b6b6] hover:underline">privacy policy</a> & <a href="#"
+                            class="text-[#f4b6b6] hover:underline">terms and conditions</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div
+        class="floating-actions fixed right-4 lg:right-6 top-1/2 -translate-y-1/2 z-[60] flex flex-col gap-3 lg:gap-4 items-end pointer-events-none">
+
+        <!-- WhatsApp -->
+        <button
+            class="whatsapp-floating-btn pointer-events-auto flex items-center gap-2 lg:gap-3 bg-primary px-4 py-2.5 lg:px-5 lg:py-3.5 rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.3)] hover:scale-105 hover:shadow-xl transition-all duration-300 border border-white/10 group">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                class="w-[20px] lg:w-[24px] h-[20px] lg:h-[24px] fill-[#25D366]">
+                <path
+                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+            </svg>
+            <span
+                class="font-label-caps text-[11px] lg:text-[12px] uppercase tracking-widest text-warm-ivory group-hover:text-dream-amber transition-colors">WhatsApp</span>
+        </button>
+
+        <!-- Book a Quote -->
+        <a href="../Contact/index.html"
+            class="pointer-events-auto flex items-center gap-2 lg:gap-3 bg-dream-amber px-4 py-2.5 lg:px-5 lg:py-3.5 rounded-full shadow-[0_8px_20px_rgba(255,125,0,0.4)] hover:bg-secondary hover:scale-105 hover:shadow-[0_10px_25px_rgba(255,125,0,0.6)] transition-all duration-300">
+            <span class="material-symbols-outlined text-on-primary text-[18px] lg:text-[22px]">edit_calendar</span>
+            <span class="font-label-caps text-[11px] lg:text-[12px] uppercase tracking-widest text-on-primary">Book A
+                Quote</span>
+        </a>
+    </div>
+
+</body>
+
+</html>
