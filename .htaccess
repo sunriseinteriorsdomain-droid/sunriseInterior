@@ -3,11 +3,6 @@ RewriteEngine On
 RewriteBase /
 
 # 1. 301 Permanent Redirects for Old Indexed Pages (Preserve Google Ranking & Fix 404s)
-RewriteRule ^home-interior-designers-vijayanagar\.html$ /sitemap/home-interior-designers-vijayanagar.html [L]
-RewriteRule ^home-interior-designers-in-chandra-layout\.html$ /sitemap/home-interior-designers-in-chandra-layout.html [L]
-RewriteRule ^home-interior-designers-in-papareddy-palya\.html$ /sitemap/home-interior-designers-in-papareddy-palya.html [L]
-RewriteRule ^home-interior-designers-in-nagarbhavi\.html$ /sitemap/home-interior-designers-in-nagarbhavi.html [L]
-RewriteRule ^home-interior-designers-in-basaveshwara-nagar\.html$ /sitemap/home-interior-designers-in-basaveshwara-nagar.html [L]
 RewriteRule ^contact-us\.html$ /book_a_quote.html [R=301,L]
 RewriteRule ^contact\.html$ /book_a_quote.html [R=301,L]
 RewriteRule ^about-us\.html$ /about.html [R=301,L]
